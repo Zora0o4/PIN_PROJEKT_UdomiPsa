@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UdomiPsa.Models.Pas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="AddPas">Dodaj Psa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Godine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Udomljen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vrsta)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Godine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Udomljen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vrsta.VrstaPsa)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Pas" asp-action="Uredi" asp-route-id="@item.Id">Uredi</a> |
+@*                 <a class="btn btn-primary" asp-controller="Pas" asp-action="Udomi" asp-route-id="@item.Id">Udomi</a> | *@
+                <a class="btn btn-danger" asp-controller="Pas" asp-action="Obrisi" asp-route-id="@item.Id">Obriši</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

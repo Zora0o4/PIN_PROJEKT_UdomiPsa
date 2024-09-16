@@ -1,0 +1,30 @@
+﻿@model IEnumerable<UdomiPsa.Models.Vrsta>
+@{
+    ViewData["Title"] = "VrstePasa";
+}
+
+<h1>Dobrodošli na stranicu "Udmoi Psa" odaberi željenu Pasminu</h1>
+
+
+<div class="w-100 mt-4 d-flex flex-wrap">
+    @foreach (var slika in Model)
+    {
+        <div class="card mx-2 mb-4 text-center" style="width:16rem;">
+            @if (string.IsNullOrEmpty(slika.ImageFileName)) 
+            { 
+                <img style="width:100%;height:180px" src="/Fotke/blank.jpg" class="card-img-top" alt="...">
+            }
+            else
+            {
+                <img style="width:100%;height:180px" src="/Fotke/@slika.ImageFileName" class="card-img-top" alt="...">
+
+            }
+            <div class="card-body">
+                <h5 class="card-title">@slika.VrstaPsa</h5>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <a class="btn btn-primary" asp-controller="Pas" asp-action="Pregled" asp-route-id="@slika.Id">Odaberi vrstu</a>
+            </div>
+        </div>
+    }
+</div>
+
